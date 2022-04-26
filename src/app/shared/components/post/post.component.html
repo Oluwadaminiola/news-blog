@@ -1,0 +1,38 @@
+<div class="post">
+  <img [src]="article.urlToImage" [alt]="article.title" class="post__img" />
+  <div class="post__body">
+    <div class="post__author">
+      <div>
+        <img src="assets/img/avatar.png" alt="avatar" />
+      </div>
+      <div>
+        <div>{{ article.source.name ? article.source.name : "Admin" }}</div>
+        <div>
+          {{ article.publishedAt | date: "mediumDate":"MMM d, y" }}
+        </div>
+      </div>
+    </div>
+    <div class="post__title" (click)="openBlogPost(article)">
+      {{ article.title }}
+    </div>
+    <div class="post__footer">
+      <button (click)="bookmarkPost(article)">
+        <img
+          [src]="
+            article.bookmark
+              ? 'assets/img/bookmark-blue.svg'
+              : 'assets/img/bookmark.svg'
+          "
+          alt="bookmark icon"
+        />
+      </button>
+      <button
+        *ngIf="article.bookmark"
+        (click)="removePost(article)"
+        class="trash"
+      >
+        <img src="assets/img/trash.svg" alt="trash icon" />
+      </button>
+    </div>
+  </div>
+</div>
