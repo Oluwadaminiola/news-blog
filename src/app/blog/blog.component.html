@@ -1,0 +1,48 @@
+<header>
+  <div class="container">
+    <h2>BBCBLOG.</h2>
+  </div>
+</header>
+<div class="banner">
+  <div class="banner__title">
+    <h2>Sharing BBC News.</h2>
+    <p>A blog about all types of news</p>
+  </div>
+</div>
+<div class="page" *ngIf="!loading">
+  <div class="side-nav">
+    <p>Filter By:</p>
+    <ul>
+      <li [ngClass]="{ active: selectedFilter === 'all' }">
+        <a (click)="filterArticles('all')">All</a>
+      </li>
+      <li [ngClass]="{ active: selectedFilter === 'bookmarked' }">
+        <a (click)="filterArticles('bookmarked')">Bookmarked</a>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="posts" *ngIf="filteredArticles && filteredArticles.length > 0">
+      <div class="posts__content">
+        <div *ngFor="let article of filteredArticles">
+          <app-post
+            [article]="article"
+            (bookmarkedPost)="bookMarkPost($event)"
+            (removedPost)="removePost($event)"
+          ></app-post>
+        </div>
+      </div>
+    </div>
+    <div class="empty-state" *ngIf="filteredArticles.length == 0">
+      <p>
+        There are no{{
+          selectedFilter === "bookmarked" ? " bookmarked" : ""
+        }}
+        posts available!
+      </p>
+    </div>
+  </div>
+</div>
+<div class="loader" *ngIf="loading">
+  <app-loader></app-loader>
+</div>

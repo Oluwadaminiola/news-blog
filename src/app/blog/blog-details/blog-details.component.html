@@ -1,0 +1,49 @@
+<header>
+  <div class="container">
+    <h2>BBCBLOG.</h2>
+  </div>
+</header>
+<div class="page" *ngIf="!loadingBlogs">
+  <div class="page__content">
+    <div class="page__header">
+      <div>
+        <img src="assets/img/avatar.png" alt="avatar" />
+      </div>
+      <div>
+        <span>{{ selectedBlog?.source?.name }}</span>
+        <span>.</span>
+        <span>{{
+          selectedBlog?.publishedAt | date: "mediumDate":"MMM d, y"
+        }}</span>
+      </div>
+    </div>
+    <div class="page__title">
+      {{ selectedBlog?.title }}
+    </div>
+    <div class="page__description">
+      {{ selectedBlog?.description }}
+    </div>
+    <div class="page__img">
+      <img [src]="selectedBlog.urlToImage" alt="image" />
+    </div>
+    <div class="page__body">
+      <div [innerHtml]="selectedBlog?.content"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="posts">
+      <div class="posts__summary">
+        <p>Recent Posts</p>
+        <a routerLink="/">See All</a>
+      </div>
+      <div class="posts__content">
+        <div *ngFor="let article of articles.slice(0, 3)">
+          <app-post [article]="article"></app-post>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loader" *ngIf="loadingBlogs">
+  <app-loader></app-loader>
+</div>

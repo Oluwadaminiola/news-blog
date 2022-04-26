@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./scss/nav";
+@import "./scss/post";
+@import "./scss/page";
+@import "./scss/reset";
+
+:root {
+  --color-black: #000624;
+  --color-white: #ffffff;
+  --color-dark: #2f2e2e;
+  --color-grey: #edeff5;
+  --color-grey-alt: #b3b3b3;
+  --color-gray: #737a91;
+  --color-blue: #477db3;
+}
